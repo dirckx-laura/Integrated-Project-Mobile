@@ -1,12 +1,15 @@
 package com.example.integratedproject
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.integratedproject.fragments.AdminFragment
 import com.example.integratedproject.fragments.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_admin.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,6 +20,8 @@ class MainActivity : AppCompatActivity() {
         val homeFragment = HomeFragment()
         val adminFragment = AdminFragment()
 
+
+
         makeCurrentFragment(homeFragment)
 
         bottom_navigation.setOnNavigationItemSelectedListener {
@@ -26,6 +31,9 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
+
+
     }
 
     private fun makeCurrentFragment(fragment: Fragment) =
