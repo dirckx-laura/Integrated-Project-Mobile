@@ -2,8 +2,6 @@ package com.example.integratedproject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -18,9 +16,11 @@ class MainActivity : AppCompatActivity() {
         val db = DataBaseHandler(context)
         AddUserButton.setOnClickListener {
             if(editTextUserName.text.toString().isNotEmpty() &&
-                    editTextTextPassword.text.toString().isNotEmpty()){
+                    editTextTextStudentenNummer.text.toString().isNotEmpty()){
                 val name = editTextUserName.text.toString()
-                db.insertData(name)
+                val studentenNummer = editTextTextStudentenNummer.text.toString()
+
+                db.insertData(name, studentenNummer)
                 clearField()
             }
             else{
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             textViewResult.text = ""
             for(i in 0 until data.size){
                 textViewResult.append(
-                    data[i].id.toString() + " " + data[i].name + "\n"
+                    data[i].id.toString() + " " + data[i].name + " " + data[i].studentennummer.toString() + "\n"
                 )
             }
         }
@@ -43,6 +43,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun clearField(){
         editTextUserName.text.clear()
-        editTextTextPassword.text.clear()
+        editTextTextStudentenNummer.text.clear()
     }
 }
