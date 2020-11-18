@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_database.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.AddUserButton
-import kotlinx.android.synthetic.main.activity_main.ButtonViewData
-import kotlinx.android.synthetic.main.activity_main.editTextTextStudentenNummer
-import kotlinx.android.synthetic.main.activity_main.editTextUserName
+
 
 class DatabaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
