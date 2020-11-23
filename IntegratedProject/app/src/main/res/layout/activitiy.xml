@@ -7,15 +7,19 @@
    <FrameLayout
        android:id="@+id/fl_wrapper"
        android:layout_width="match_parent"
-       android:layout_height="match_parent" />
+       android:layout_height="match_parent" >
+
+
+   </FrameLayout>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="?android:windowBackground"
-        app:itemBackground="@color/colorPrimary"
+        android:background="#97000C"
+
         app:itemIconTint="#fff"
         app:itemTextColor="#fff"
         app:menu="@menu/nav_menu"/>
