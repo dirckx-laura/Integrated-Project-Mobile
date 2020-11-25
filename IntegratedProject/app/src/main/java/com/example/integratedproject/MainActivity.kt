@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-        userListButton.setOnClickListener{
+       userListButton.setOnClickListener{
             val intent = Intent(this, UserList::class.java)
             startActivity(intent)
         }

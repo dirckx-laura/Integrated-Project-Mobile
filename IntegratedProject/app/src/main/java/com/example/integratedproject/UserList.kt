@@ -1,5 +1,6 @@
 package com.example.integratedproject
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
@@ -13,11 +14,17 @@ class UserList : AppCompatActivity() {
         setContentView(R.layout.activity_user_list)
         listView = findViewById<ListView>(R.id.studentList)
         val studentList=ArrayList<User>()
-        studentList.add(User("James Stoels","s107197",null, null,false))
+        studentList.add(User("James Stoels","s107197",null, null,true))
         studentList.add(User("Witse Cools","s123456",null, null,false))
         studentList.add(User("Laura Dirckx","s654321",null, null,false))
         val adapter=UserListAdapter(this,studentList)
         listView.adapter=adapter
 
+        listView.setOnItemClickListener{parent, view, position, id ->
+            val element = adapter.getItemId(position) // The item that was clicked
+            val intent = Intent(this, DrawingCanavas::class.java)
+            startActivity(intent)
+
+        }
     }
 }

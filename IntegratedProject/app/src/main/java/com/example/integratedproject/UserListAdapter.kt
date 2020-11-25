@@ -4,10 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.Filter
-import android.widget.Filterable
-import android.widget.TextView
+import android.widget.*
 
 class UserListAdapter (private val context: Context,
                        private val dataSource: ArrayList<UserList.User>) : BaseAdapter(),Filterable {
@@ -18,10 +15,12 @@ class UserListAdapter (private val context: Context,
         val rowView = inflater.inflate(R.layout.student_list, parent, false)
         val nameTextView=rowView.findViewById(R.id.FirstText) as TextView
         val sNumberTextView=rowView.findViewById(R.id.SecondText) as TextView
+       // val checkBoxStudent=rowView.findViewById(R.id.checkBoxStudent) as CheckBox
 
         val student=getItem(position) as UserList.User
         nameTextView.text=student.name
         sNumberTextView.text=student.studentNr
+
 
         return  rowView
     }
