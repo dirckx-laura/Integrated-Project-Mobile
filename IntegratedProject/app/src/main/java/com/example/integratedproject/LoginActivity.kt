@@ -47,8 +47,8 @@ class LoginActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.admin ->{
                     Log.d("test","admin")
-                    val intent= Intent(this,LoginActivity::class.java)
-                    startActivity(intent)
+                    /*val intent= Intent(this,LoginActivity::class.java)
+                    startActivity(intent)*/
                     true
                 }
                 else -> {

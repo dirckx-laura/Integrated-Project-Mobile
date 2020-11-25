@@ -61,15 +61,17 @@ class AdminList : AppCompatActivity() {
         bottomNavView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.admin ->{
-                    Log.d("test","admin")
+                    /*Log.d("test","admin")
                     val intent= Intent(this,LoginActivity::class.java)
-                    startActivity(intent)
+                    startActivity(intent)*/
                     true
                 }
                 else -> {
-                    /*Log.d("test","students")
-                    val intent= Intent(this,AdminList::class.java)
-                    startActivity(intent)*/
+/*
+                    Log.d("test","students")
+*/
+                    val intent = Intent(this, UserList::class.java)
+                    startActivity(intent)
                     false
                 }
             }
