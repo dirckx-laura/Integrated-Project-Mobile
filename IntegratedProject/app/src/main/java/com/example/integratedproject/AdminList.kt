@@ -9,12 +9,14 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.EditText
 import android.widget.ListView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class AdminList : AppCompatActivity() {
     data class Student(val name:String,val studentNr:String)
     lateinit var searchStudent:EditText
     private lateinit var listView: ListView;
     private lateinit var adminDbHelper:AdminDBHelper
+    private lateinit var bottomNavView: BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_list)
@@ -22,6 +24,8 @@ class AdminList : AppCompatActivity() {
         searchStudent=findViewById<EditText>(R.id.searchStudent)
         val studentList=ArrayList<Student>()
         adminDbHelper= AdminDBHelper(this)
+        bottomNavView=findViewById(R.id.bottom_navigation)
+        bottomNavView.selectedItemId=R.id.admin
 /*        Log.d("pwd","rowcount: ${adminDbHelper.getRowCount()}")
         if(adminDbHelper.getRowCount()>0){
             val hashedPwd=adminDbHelper.getPassword()
@@ -53,6 +57,22 @@ class AdminList : AppCompatActivity() {
             val studentInfoIntent= Intent(this,StudentInfoActivity::class.java)
             studentInfoIntent.putExtra("sNr",studentList[position].studentNr)
             startActivity(studentInfoIntent)
+        }
+        bottomNavView.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.admin ->{
+                    Log.d("test","admin")
+                    val intent= Intent(this,LoginActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> {
+                    /*Log.d("test","students")
+                    val intent= Intent(this,AdminList::class.java)
+                    startActivity(intent)*/
+                    false
+                }
+            }
         }
 
     }

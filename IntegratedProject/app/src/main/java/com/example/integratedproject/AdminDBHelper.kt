@@ -9,7 +9,7 @@ import android.util.Log
 import java.lang.StringBuilder
 import java.util.ArrayList
 
-class AdminDBHelper(context: Context) :SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION){
+class AdminDBHelper(context: Context?) :SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION){
     override fun onCreate(db: SQLiteDatabase?) {
         val createTable="CREATE TABLE $TABLE_ADMIN(_id Integer PRIMARY KEY, PASSWORD VARCHAR(255), SALT VARCHAR(255))"
         db?.execSQL(createTable)
