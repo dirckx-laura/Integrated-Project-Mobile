@@ -23,9 +23,8 @@ class MainActivity : AppCompatActivity() {
         bottomNavView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.students ->{
-                    /*Log.d("test","students")
-                    val intent= Intent(this,AdminList::class.java)
-                    startActivity(intent)*/
+                    val intent = Intent(this, UserList::class.java)
+                    startActivity(intent)
                     true
                 }
                 else -> {
