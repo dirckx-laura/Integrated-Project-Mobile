@@ -1,14 +1,20 @@
 package com.example.integratedproject.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.example.integratedproject.DatabaseActivity
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import com.example.integratedproject.AdminDBHelper
+import com.example.integratedproject.AdminList
 import com.example.integratedproject.R
-import kotlinx.android.synthetic.main.fragment_admin.*
+import kotlinx.android.synthetic.main.activity_login.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,16 +30,15 @@ class AdminFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    private lateinit var passwordText: EditText
+    private lateinit var loginBtn: Button
+    private lateinit var adminDbHelper: AdminDBHelper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
-
-
     }
 
     override fun onCreateView(
@@ -41,18 +46,38 @@ class AdminFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin, container, false)
+        return inflater.inflate(R.layout.activity_login, container, false)
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
-        buttonAddStudent.setOnClickListener {
-            val intent = Intent(activity, DatabaseActivity::class.java)
-            startActivity(intent)
+        passwordText=editTextTextPassword
+        loginBtn=loginBtn
+        adminDbHelper= AdminDBHelper(activity)
+        /*if(adminDbHelper.getRowCount()>0L){
+            val hashedPwd=adminDbHelper.getPassword()
+            Log.d("pwd","hashedPwd$hashedPwd")
         }
-    }
+        else{
+            adminDbHelper.insertPassword("admin")
+        }
 
+        loginBtn.setOnClickListener {
+            if(!passwordText.text.toString().isEmpty()){
+                if(adminDbHelper.comparePassword(passwordText.text.toString())){
+                    Toast.makeText(requireContext(), "Login Success!", Toast.LENGTH_SHORT).show()
+                    val intent= Intent(requireContext(), AdminList::class.java)
+                    startActivity(intent)
+                }
+                else{
+                    Toast.makeText(requireContext(), "Wrong Password!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }*/
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of
