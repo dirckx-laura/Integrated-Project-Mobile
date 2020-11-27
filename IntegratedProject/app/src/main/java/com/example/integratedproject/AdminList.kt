@@ -7,9 +7,11 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_database.*
 
 class AdminList : AppCompatActivity() {
     data class Student(val name:String,val studentNr:String)
@@ -17,15 +19,20 @@ class AdminList : AppCompatActivity() {
     private lateinit var listView: ListView;
     private lateinit var adminDbHelper:AdminDBHelper
     private lateinit var bottomNavView: BottomNavigationView
+    private lateinit var addStudentButton: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_list)
         listView = findViewById<ListView>(R.id.student_list)
         searchStudent=findViewById<EditText>(R.id.searchStudent)
-        val studentList=ArrayList<Student>()
+        var studentList=ArrayList<Student>()
         adminDbHelper= AdminDBHelper(this)
         bottomNavView=findViewById(R.id.bottom_navigation)
         bottomNavView.selectedItemId=R.id.admin
+        addStudentButton=findViewById(R.id.addStudentButton)
+        val context = this
+        val db = DataBaseHandler(context)
+
 /*        Log.d("pwd","rowcount: ${adminDbHelper.getRowCount()}")
         if(adminDbHelper.getRowCount()>0){
             val hashedPwd=adminDbHelper.getPassword()
@@ -34,9 +41,18 @@ class AdminList : AppCompatActivity() {
         else{
             adminDbHelper.insertPassword("test")
         }*/
+
+            val data = db.readData()
+
+            //studentList = data as ArrayList<Student>
+
+        Log.d("studentlist", data.toString());
+
+
         studentList.add(Student("James Stoels","s107197"))
         studentList.add(Student("Witse Cools","s123456"))
         studentList.add(Student("Laura Dirckx","s654321"))
+        Log.d("studentlist", studentList.toString());
         val adapter=StudentListAdapter(this,studentList)
         listView.adapter=adapter
         searchStudent.addTextChangedListener(object :TextWatcher{
@@ -75,6 +91,11 @@ class AdminList : AppCompatActivity() {
                     false
                 }
             }
+        }
+
+        addStudentButton.setOnClickListener {
+            val intent= Intent(this,DatabaseActivity::class.java)
+            startActivity(intent)
         }
 
     }

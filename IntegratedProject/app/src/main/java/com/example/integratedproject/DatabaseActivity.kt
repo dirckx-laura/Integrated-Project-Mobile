@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_database.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 class DatabaseActivity : AppCompatActivity() {
@@ -14,7 +13,7 @@ class DatabaseActivity : AppCompatActivity() {
         title = "iWasThere"
         val context = this
         val db = DataBaseHandler(context)
-        AddUserButton.setOnClickListener {
+        AddStudentButton.setOnClickListener {
             if(editTextUserName.text.toString().isNotEmpty() &&
                 editTextTextStudentenNummer.text.toString().isNotEmpty()){
                 val name = editTextUserName.text.toString()
@@ -34,7 +33,7 @@ class DatabaseActivity : AppCompatActivity() {
             textViewResult.text = ""
             for(i in 0 until data.size){
                 textViewResult.append(
-                    data[i].id.toString() + " " + data[i].name + " " + data[i].studentennummer.toString() + "\n"
+                    data[i].studentennummer.toString() + " " + data[i].name + "\n"
                 )
             }
         }

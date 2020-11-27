@@ -67,13 +67,13 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/AddUserButton"
+        android:id="@+id/AddStudentButton"
         android:layout_width="155dp"
         android:layout_height="70dp"
         android:layout_marginEnd="744dp"
         android:layout_marginRight="744dp"
         android:layout_marginBottom="192dp"
-        android:text="Add user"
+        android:text="Add student"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

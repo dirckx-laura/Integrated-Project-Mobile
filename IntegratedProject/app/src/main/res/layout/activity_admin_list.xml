@@ -16,12 +16,24 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Students" />
-    <ListView android:id="@+id/student_list"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+
+    <ListView
+        android:id="@+id/student_list"
+        android:layout_width="729dp"
+        android:layout_height="373dp"
         android:layout_weight="2"
         android:drawSelectorOnTop="false">
+
+
+
     </ListView>
+
+    <Button
+        android:id="@+id/addStudentButton"
+        android:layout_width="146dp"
+        android:layout_height="wrap_content"
+        android:text="Add student" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"

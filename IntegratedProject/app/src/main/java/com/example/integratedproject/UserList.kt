@@ -16,7 +16,12 @@ class UserList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_list)
         listView = findViewById<ListView>(R.id.student_list);
-        val studentList=ArrayList<User>()
+        var studentList=ArrayList<User>()
+        val context = this
+        val db = DataBaseHandler(context)
+        val data = db.readData()
+        //studentList = data as ArrayList<User>
+        Log.d("studentlist", data.toString());
         studentList.add(User("James Stoels","s107197",null, null,true))
         studentList.add(User("Witse Cools","s123456",null, null,false))
         studentList.add(User("Laura Dirckx","s654321",null, null,false))
