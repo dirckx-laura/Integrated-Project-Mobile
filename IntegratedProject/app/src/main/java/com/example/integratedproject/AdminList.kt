@@ -44,9 +44,8 @@ class AdminList : AppCompatActivity() {
 
             val data = db.readData()
 
-            //studentList = data as ArrayList<Student>
+           // studentList = data as ArrayList<Student>
 
-        Log.d("studentlist", data.toString());
 
 
         studentList.add(Student("James Stoels","s107197"))
