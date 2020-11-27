@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.integratedproject.fragments.AdminFragment
-import com.example.integratedproject.fragments.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activitiy.*
 
