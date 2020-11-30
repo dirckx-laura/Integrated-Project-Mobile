@@ -20,10 +20,7 @@ class UserList : AppCompatActivity() {
         val context = this
         val db = DataBaseHandler(context)
         val data = db.readData()
-
         
-
-
         studentList.add(User("James Stoels","s107197",null, null,true))
         studentList.add(User("Witse Cools","s123456",null, null,false))
         studentList.add(User("Laura Dirckx","s654321",null, null,false))
