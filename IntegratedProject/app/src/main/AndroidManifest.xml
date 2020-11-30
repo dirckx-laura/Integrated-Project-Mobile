@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".DrawingCanavas"></activity>
-        <activity android:name=".DatabaseActivity"></activity>
+        <activity android:name=".DrawingCanavas" />
+        <activity android:name=".DatabaseActivity" />
         <activity android:name=".UserList" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -22,7 +22,7 @@
         </activity>
 
 
-        <activity android:name=".StudentInfoActivity"></activity>
+        <activity android:name=".StudentInfoActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,13 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

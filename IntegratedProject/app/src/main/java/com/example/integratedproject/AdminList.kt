@@ -1,6 +1,5 @@
 package com.example.integratedproject
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,11 +9,11 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_database.*
 
 class AdminList : AppCompatActivity() {
-    data class Student(val name:String,val studentNr:String)
+    data class Student(val name: String, val studentNr:String)
     lateinit var searchStudent:EditText
     private lateinit var listView: ListView;
     private lateinit var adminDbHelper:AdminDBHelper
@@ -33,25 +32,17 @@ class AdminList : AppCompatActivity() {
         val context = this
         val db = DataBaseHandler(context)
 
-/*        Log.d("pwd","rowcount: ${adminDbHelper.getRowCount()}")
-        if(adminDbHelper.getRowCount()>0){
-            val hashedPwd=adminDbHelper.getPassword()
-            Log.d("pwd","hashedPwd$hashedPwd")
+        val data = db.readData()
+
+        if(data.size != 0){
+            for(item in data){
+                studentList.add(Student(item.name.toString(), item.studentennummer.toString()));
+            }
+        }else{
+            Toast.makeText(context, "NO DATA!", Toast.LENGTH_SHORT).show()
         }
-        else{
-            adminDbHelper.insertPassword("test")
-        }*/
-
-            val data = db.readData()
-
-           // studentList = data as ArrayList<Student>
 
 
-
-        studentList.add(Student("James Stoels","s107197"))
-        studentList.add(Student("Witse Cools","s123456"))
-        studentList.add(Student("Laura Dirckx","s654321"))
-        Log.d("studentlist", studentList.toString());
         val adapter=StudentListAdapter(this,studentList)
         listView.adapter=adapter
         searchStudent.addTextChangedListener(object :TextWatcher{
