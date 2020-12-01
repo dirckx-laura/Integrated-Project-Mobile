@@ -18,8 +18,8 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
     1) {
     override fun onCreate(db: SQLiteDatabase?) {
 
-        val createTableStudents = "CREATE TABLE " + TABLENAMESTUDENTS + " (" + COL_STUDENTENNUMMER + " INTEGER PRIMARY KEY AUTOINCREMENT," + COL_NAME + " VARCHAR(256));"
-        val createTableRegistration = "CREATE TABLE " + TABLENAMEREGISTRATION + " (" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COL_LOCATION + " VARCHAR(256)" + COL_SIGNATUREPOINTS + " VARCHAR(256));"
+        val createTableStudents = "CREATE TABLE " + TABLENAMESTUDENTS + " (" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+COL_STUDENTENNUMMER+" INTEGER," + COL_NAME + " VARCHAR(256));"
+        val createTableRegistration = "CREATE TABLE " + TABLENAMEREGISTRATION + " (" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COL_LOCATION + " VARCHAR(256)," + COL_SIGNATUREPOINTS + " VARCHAR(256));"
 
         db?.execSQL(createTableStudents)
         db?.execSQL(createTableRegistration)

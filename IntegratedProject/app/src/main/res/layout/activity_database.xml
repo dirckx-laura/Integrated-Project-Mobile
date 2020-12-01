@@ -62,7 +62,7 @@
         android:layout_marginRight="376dp"
         android:layout_marginBottom="264dp"
         android:ems="10"
-        android:inputType="textPassword"
+        android:inputType="numberPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
