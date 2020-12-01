@@ -33,7 +33,7 @@ class AdminList : AppCompatActivity() {
         bottomNavView=findViewById(R.id.bottom_navigation)
         bottomNavView.selectedItemId=R.id.admin
         addStudentButton=findViewById(R.id.addStudentButton)
-        val context = this
+        /*val context = this
         db = DataBaseHandler(context)
 
         val data = db.readData()
@@ -44,11 +44,11 @@ class AdminList : AppCompatActivity() {
             }
         }else{
             Toast.makeText(context, "NO DATA!", Toast.LENGTH_SHORT).show()
-        }
-
-
+        }*/
+        loadStudents()
         val adapter=StudentListAdapter(this,studentList)
         listView.adapter=adapter
+        if(studentList.size !=0){
         searchStudent.addTextChangedListener(object :TextWatcher{
             override fun afterTextChanged(s: Editable?) {
                 adapter.getFilter().filter(s);
@@ -86,6 +86,9 @@ class AdminList : AppCompatActivity() {
                 }
             }
         }
+        }else{
+            Toast.makeText(this, "NO DATA!", Toast.LENGTH_SHORT).show()
+        }
 
         addStudentButton.setOnClickListener {
             val intent= Intent(this,DatabaseActivity::class.java)
@@ -100,5 +103,29 @@ class AdminList : AppCompatActivity() {
             this.finish()
             startActivity(intent)
         }
+    }
+    private fun loadStudents(){
+        db = DataBaseHandler(this)
+
+        val data = db.readData()
+        studentList= ArrayList<Student>()
+        if(data.size != 0){
+            for(item in data){
+                studentList.add(Student(item.name, item.studentennummer.toString()));
+            }
+        }else{
+            Toast.makeText(this, "NO DATA!", Toast.LENGTH_SHORT).show()
+        }
+
+        if(studentList.size !=0){
+            val adapter=StudentListAdapter(this,studentList)
+            listView.adapter=adapter
+        }
+        val adapter=StudentListAdapter(this,studentList)
+        listView.adapter=adapter
+    }
+    override fun onResume() {
+        super.onResume()
+        loadStudents()
     }
 }
