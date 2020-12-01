@@ -42,6 +42,9 @@ class AdminList : AppCompatActivity() {
             Toast.makeText(context, "NO DATA!", Toast.LENGTH_SHORT).show()
         }
 
+        if(studentList.size !=0){
+
+
 
         val adapter=StudentListAdapter(this,studentList)
         listView.adapter=adapter
@@ -81,6 +84,9 @@ class AdminList : AppCompatActivity() {
                     false
                 }
             }
+        }
+        }else{
+            Toast.makeText(context, "NO DATA!", Toast.LENGTH_SHORT).show()
         }
 
         addStudentButton.setOnClickListener {

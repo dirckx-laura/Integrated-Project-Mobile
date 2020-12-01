@@ -18,8 +18,8 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
     1) {
     override fun onCreate(db: SQLiteDatabase?) {
 
-        val createTableStudents = "CREATE TABLE " + TABLENAMESTUDENTS + " (" + COL_STUDENTENNUMMER + " INTEGER PRIMARY KEY AUTOINCREMENT," + COL_NAME + " VARCHAR(256));"
-        val createTableRegistration = "CREATE TABLE " + TABLENAMEREGISTRATION + " (" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COL_LOCATION + " VARCHAR(256)" + COL_SIGNATUREPOINTS + " VARCHAR(256));"
+        val createTableStudents = "CREATE TABLE " + TABLENAMESTUDENTS + " (" + COL_STUDENTENNUMMER + " INTEGER PRIMARY KEY," + COL_NAME + " VARCHAR(256));"
+        val createTableRegistration = "CREATE TABLE " + TABLENAMEREGISTRATION + " (" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COL_LOCATION + " VARCHAR(256)," + COL_SIGNATUREPOINTS + " VARCHAR(256));"
 
         db?.execSQL(createTableStudents)
         db?.execSQL(createTableRegistration)
@@ -32,19 +32,20 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
     //insert into STUDENTS Table
     fun insertData(name: String, studentennummer: String) {
         val database = this.writableDatabase
-        val contentValues = ContentValues()
-        contentValues.put(COL_STUDENTENNUMMER, studentennummer)
-        contentValues.put(COL_NAME, name)
+
+            val contentValues = ContentValues()
+            contentValues.put(COL_STUDENTENNUMMER, studentennummer)
+            contentValues.put(COL_NAME, name)
+
+            val result = database.insert(TABLENAMESTUDENTS, null, contentValues)
+            if (result == (0).toLong()) {
+                Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+            }
 
 
-
-        val result = database.insert(TABLENAMESTUDENTS, null, contentValues)
-        if (result == (0).toLong()) {
-            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
-        }
-        else {
-            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
-        }
     }
 
     //Read Data from Students Table

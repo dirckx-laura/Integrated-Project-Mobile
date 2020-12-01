@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_database.*
+import java.lang.Exception
 
 
 class DatabaseActivity : AppCompatActivity() {
@@ -14,17 +15,18 @@ class DatabaseActivity : AppCompatActivity() {
         val context = this
         val db = DataBaseHandler(context)
         AddStudentButton.setOnClickListener {
-            if(editTextUserName.text.toString().isNotEmpty() &&
-                editTextTextStudentenNummer.text.toString().isNotEmpty()){
-                val name = editTextUserName.text.toString()
-                val studentenNummer = editTextTextStudentenNummer.text.toString()
 
-                db.insertData(name, studentenNummer)
-                clearField()
-            }
-            else{
-                Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_SHORT).show()
-            }
+                if(editTextUserName.text.toString().isNotEmpty() &&
+                    editTextTextStudentenNummer.text.toString().isNotEmpty()){
+                    val name = editTextUserName.text.toString()
+                    val studentenNummer = editTextTextStudentenNummer.text.toString()
+
+                    db.insertData(name, studentenNummer)
+                    clearField()
+                }
+                else {
+                    Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                }
 
         }
 
