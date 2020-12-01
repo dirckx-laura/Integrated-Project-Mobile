@@ -4,13 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.Filter
-import android.widget.Filterable
-import android.widget.TextView
+import android.widget.*
 
-class StudentListAdapter (private val context: Context,
-                          private val dataSource: ArrayList<AdminList.Student>) : BaseAdapter(),Filterable {
+class UserListAdapter (private val context: Context,
+                       private val dataSource: ArrayList<UserList.User>) : BaseAdapter(),Filterable {
     private val inflater: LayoutInflater
             = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     private var filteredDataSource=dataSource
@@ -18,10 +15,12 @@ class StudentListAdapter (private val context: Context,
         val rowView = inflater.inflate(R.layout.student_list, parent, false)
         val nameTextView=rowView.findViewById(R.id.FirstText) as TextView
         val sNumberTextView=rowView.findViewById(R.id.SecondText) as TextView
+      //   val checkBoxStudent=rowView.findViewById(R.id.checkBoxStudent) as CheckBox
 
-        val student=getItem(position) as AdminList.Student
+        val student=getItem(position) as UserList.User
         nameTextView.text=student.name
-        sNumberTextView.text="s"+student.studentNr
+        sNumberTextView.text=student.studentNr
+
 
         return  rowView
     }
@@ -53,7 +52,7 @@ class StudentListAdapter (private val context: Context,
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                filteredDataSource = results?.values as ArrayList<AdminList.Student>
+                filteredDataSource = results?.values as ArrayList<UserList.User>
                 notifyDataSetChanged()
             }
 
