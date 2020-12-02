@@ -13,13 +13,14 @@ val TABLENAMEREGISTRATION = "Registration"
 val COL_ID = "id"
 val COL_LOCATION = "location"
 val COL_SIGNATUREPOINTS = "signaturepoints"
+val COL_DATUM = "datum"
 
 class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASENAME, null,
     1) {
     override fun onCreate(db: SQLiteDatabase?) {
 
         val createTableStudents = "CREATE TABLE " + TABLENAMESTUDENTS + " (" + COL_STUDENTENNUMMER + " INTEGER PRIMARY KEY," + COL_NAME + " VARCHAR(256));"
-        val createTableRegistration = "CREATE TABLE " + TABLENAMEREGISTRATION + " (" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COL_LOCATION + " VARCHAR(256)," + COL_SIGNATUREPOINTS + " VARCHAR(256));"
+        val createTableRegistration = "CREATE TABLE " + TABLENAMEREGISTRATION + " (" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COL_STUDENTENNUMMER + " INTEGER, " + COL_LOCATION + " VARCHAR(256)," + COL_SIGNATUREPOINTS + " VARCHAR(256), " + COL_DATUM + " VARCHAR(256));"
 
         db?.execSQL(createTableStudents)
         db?.execSQL(createTableRegistration)
@@ -69,12 +70,14 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
     }
 
     //Insert data into Registraion Table
-    fun insertDataRegistration(location: String, signaturePoints: String) {
+    fun insertDataRegistration(location: String, signaturePoints: String, studentennummer: String, datum: String) {
         val database = this.writableDatabase
         val contentValues = ContentValues()
 
         contentValues.put(COL_LOCATION, location)
         contentValues.put(COL_SIGNATUREPOINTS, signaturePoints)
+        contentValues.put(COL_STUDENTENNUMMER, studentennummer)
+        contentValues.put(COL_DATUM, datum);
 
         val result = database.insert(TABLENAMEREGISTRATION, null, contentValues)
         if (result == (0).toLong()) {
@@ -98,6 +101,9 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
                 registration.location = result.getString(result.getColumnIndex(COL_LOCATION))
                 registration.signaturePoints = result.getString(result.getColumnIndex(
                     COL_SIGNATUREPOINTS))
+                registration.datum = result.getString(result.getColumnIndex(COL_DATUM)).toString()
+                registration.studentennummer = result.getString(result.getColumnIndex(
+                    COL_STUDENTENNUMMER)).toInt();
 
                 list.add(registration)
             }
