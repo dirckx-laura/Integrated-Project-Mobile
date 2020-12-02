@@ -1,5 +1,6 @@
 package com.example.integratedproject
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -31,13 +32,15 @@ class DatabaseActivity : AppCompatActivity() {
         }
 
         ButtonViewData.setOnClickListener {
-            val data = db.readData()
+            /*val data = db.readData()
             textViewResult.text = ""
             for(i in 0 until data.size){
                 textViewResult.append(
                     data[i].studentennummer.toString() + " " + data[i].name + "\n"
                 )
-            }
+            }*/
+            setResult(Activity.RESULT_OK)
+            finish()
         }
     }
 
