@@ -112,7 +112,7 @@ class MyCanvasView(context: Context, attrs: AttributeSet) : View(context, attrs)
 
     fun getCoords() : String {
         return coordstring
-      //  Log.d( "Coordinaten : ", coordstring)
+
     }
 
     private fun touchUp() {

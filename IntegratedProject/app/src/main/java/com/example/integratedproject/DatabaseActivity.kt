@@ -16,7 +16,6 @@ class DatabaseActivity : AppCompatActivity() {
         val context = this
         val db = DataBaseHandler(context)
         AddStudentButton.setOnClickListener {
-
                 if(editTextUserName.text.toString().isNotEmpty() &&
                     editTextTextStudentenNummer.text.toString().isNotEmpty()){
                     val name = editTextUserName.text.toString()
@@ -28,8 +27,9 @@ class DatabaseActivity : AppCompatActivity() {
                 else {
                     Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_SHORT).show()
                 }
-
         }
+
+
 
         ButtonViewData.setOnClickListener {
             /*val data = db.readData()
