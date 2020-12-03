@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.*
 
 class UserListAdapter (private val context: Context,
-                       private val dataSource: ArrayList<UserList.User>) : BaseAdapter(),Filterable {
+                       private val dataSource: ArrayList<UserList.Student>) : BaseAdapter(),Filterable {
     private val inflater: LayoutInflater
             = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     private var filteredDataSource=dataSource
@@ -17,7 +17,7 @@ class UserListAdapter (private val context: Context,
         val sNumberTextView=rowView.findViewById(R.id.SecondText) as TextView
       //   val checkBoxStudent=rowView.findViewById(R.id.checkBoxStudent) as CheckBox
 
-        val student=getItem(position) as UserList.User
+        val student=getItem(position) as UserList.Student
         nameTextView.text=student.name
         sNumberTextView.text=student.studentNr
 
@@ -52,7 +52,7 @@ class UserListAdapter (private val context: Context,
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                filteredDataSource = results?.values as ArrayList<UserList.User>
+                filteredDataSource = results?.values as ArrayList<UserList.Student>
                 notifyDataSetChanged()
             }
 
