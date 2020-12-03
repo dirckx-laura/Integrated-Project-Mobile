@@ -22,6 +22,7 @@ class MyCanvasView(context: Context, attrs: AttributeSet) : View(context, attrs)
     private lateinit var extraCanvas: Canvas
     private lateinit var extraBitmap: Bitmap
 
+    private var isRedraw:Boolean=false
     private val paint = Paint().apply {
         color = drawColor
         isAntiAlias = true
@@ -42,14 +43,26 @@ class MyCanvasView(context: Context, attrs: AttributeSet) : View(context, attrs)
 
     override fun onSizeChanged(width: Int, height: Int, oldWidth: Int, oldHeight: Int) {
         super.onSizeChanged(width, height, oldWidth, oldHeight)
-        if (::extraBitmap.isInitialized) extraBitmap.recycle()
+        if(!isRedraw){
+            if (::extraBitmap.isInitialized) extraBitmap.recycle()
+            extraBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+            extraCanvas = Canvas(extraBitmap)
+            extraCanvas.drawColor(backgroundColor)
+        }
+    }
+    fun Init(width: Int,height: Int){
         extraBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         extraCanvas = Canvas(extraBitmap)
         extraCanvas.drawColor(backgroundColor)
     }
-    fun Redraw(coordlist: ArrayList<Float>) {
+    fun Redraw(coordlist: ArrayList<Float>,width: Int,height: Int) {
+        isRedraw=true
+        extraBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        extraCanvas = Canvas(extraBitmap)
         var floatArrayy = coordlist.toFloatArray()
         extraCanvas.drawLines(floatArrayy, paint)
+        Log.d("test","Redrawing...")
+        //invalidate()
     }
 
     fun getDrawing(): ArrayList<Float> {
@@ -68,6 +81,7 @@ class MyCanvasView(context: Context, attrs: AttributeSet) : View(context, attrs)
             MotionEvent.ACTION_MOVE -> touchMove()
             MotionEvent.ACTION_UP -> touchUp()
         }
+        Log.d("test","x:${currentX}, y:${currentY}")
         coordlist.add(currentX)
         coordlist.add(currentY)
         return true

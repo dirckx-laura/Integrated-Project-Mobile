@@ -7,11 +7,14 @@
     tools:context=".StudentInfoActivity">
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="350dp"
-        tools:layout_editor_absoluteY="327dp" />
+    <ListView
+        android:id="@+id/registrationListView"
+        android:layout_width="729dp"
+        android:layout_height="373dp"
+        android:layout_weight="2"
+        android:drawSelectorOnTop="false">
+
+
+
+    </ListView>
 </androidx.constraintlayout.widget.ConstraintLayout>
