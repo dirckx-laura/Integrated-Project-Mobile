@@ -34,17 +34,16 @@ class AdminList : AppCompatActivity() {
         bottomNavView.selectedItemId=R.id.admin
         addStudentButton=findViewById(R.id.addStudentButton)
         val context = this
-        loadStudents()
+        studentList=loadStudents()
 
         if(studentList.size !=0){
-
-
-
         val adapter=StudentListAdapter(this,studentList)
         listView.adapter=adapter
         searchStudent.addTextChangedListener(object :TextWatcher{
             override fun afterTextChanged(s: Editable?) {
-                adapter.getFilter().filter(s);
+                Log.d("test","filtertext")
+                adapter.getFilter().filter(s)
+                listView.adapter=adapter
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -59,6 +58,7 @@ class AdminList : AppCompatActivity() {
         listView.setOnItemClickListener { _, _, position, _ ->
             val studentInfoIntent= Intent(this,StudentInfoActivity::class.java)
             studentInfoIntent.putExtra("sNr",studentList[position].studentNr)
+            Log.d("test","Student clicked")
             startActivity(studentInfoIntent)
         }
         bottomNavView.setOnNavigationItemSelectedListener {
@@ -97,7 +97,7 @@ class AdminList : AppCompatActivity() {
             startActivity(intent)
         }
     }
-    private fun loadStudents(){
+    private fun loadStudents():ArrayList<Student>{
         db = DataBaseHandler(this)
 
         val data = db.readData()
@@ -116,6 +116,7 @@ class AdminList : AppCompatActivity() {
         }
         val adapter=StudentListAdapter(this,studentList)
         listView.adapter=adapter
+        return studentList
     }
     override fun onResume() {
         super.onResume()
