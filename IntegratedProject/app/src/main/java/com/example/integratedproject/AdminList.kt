@@ -1,5 +1,6 @@
 package com.example.integratedproject
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,6 +20,9 @@ class AdminList : AppCompatActivity() {
     private lateinit var adminDbHelper:AdminDBHelper
     private lateinit var bottomNavView: BottomNavigationView
     private lateinit var addStudentButton: Button
+    private var studentList=ArrayList<Student>()
+    private lateinit var db:DataBaseHandler
+    private val REQUEST_CODE=1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_list)
@@ -30,17 +34,7 @@ class AdminList : AppCompatActivity() {
         bottomNavView.selectedItemId=R.id.admin
         addStudentButton=findViewById(R.id.addStudentButton)
         val context = this
-        val db = DataBaseHandler(context)
-
-        val data = db.readData()
-
-        if(data.size != 0){
-            for(item in data){
-                studentList.add(Student(item.name.toString(), item.studentennummer.toString()));
-            }
-        }else{
-            Toast.makeText(context, "NO DATA!", Toast.LENGTH_SHORT).show()
-        }
+        loadStudents()
 
         if(studentList.size !=0){
 
@@ -91,8 +85,40 @@ class AdminList : AppCompatActivity() {
 
         addStudentButton.setOnClickListener {
             val intent= Intent(this,DatabaseActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(intent,REQUEST_CODE)
         }
 
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode==REQUEST_CODE && resultCode== Activity.RESULT_OK){
+            Log.d("test","result activity")
+            this.finish()
+            startActivity(intent)
+        }
+    }
+    private fun loadStudents(){
+        db = DataBaseHandler(this)
+
+        val data = db.readData()
+        studentList= ArrayList<Student>()
+        if(data.size != 0){
+            for(item in data){
+                studentList.add(Student(item.name, item.studentennummer.toString()));
+            }
+        }else{
+            Toast.makeText(this, "NO DATA!", Toast.LENGTH_SHORT).show()
+        }
+
+        if(studentList.size !=0){
+            val adapter=StudentListAdapter(this,studentList)
+            listView.adapter=adapter
+        }
+        val adapter=StudentListAdapter(this,studentList)
+        listView.adapter=adapter
+    }
+    override fun onResume() {
+        super.onResume()
+        loadStudents()
     }
 }
