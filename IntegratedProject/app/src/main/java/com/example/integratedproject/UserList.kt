@@ -63,7 +63,7 @@ class UserList : AppCompatActivity() {
             })
 
             listView.setOnItemClickListener { _, _, position, _ ->
-                val studentInfoIntent= Intent(this,StudentInfoActivity::class.java)
+                val studentInfoIntent= Intent(this,DrawingCanavas::class.java)
                 studentInfoIntent.putExtra("sNr",studentList[position].studentNr)
                 startActivity(studentInfoIntent)
             }
