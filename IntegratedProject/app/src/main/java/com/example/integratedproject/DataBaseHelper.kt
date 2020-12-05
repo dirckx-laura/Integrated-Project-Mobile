@@ -69,6 +69,7 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
         return list
     }
 
+
     //Insert data into Registraion Table
     fun insertDataRegistration(location: String, signaturePoints: String, studentennummer: String, datum: String) {
         val database = this.writableDatabase
@@ -93,6 +94,29 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
         val list: MutableList<Registration> = ArrayList()
         val db = this.readableDatabase
         val query = "Select * from $TABLENAMEREGISTRATION"
+        val result = db.rawQuery(query, null)
+        if (result.moveToFirst()) {
+            do {
+                val registration = Registration()
+
+                registration.location = result.getString(result.getColumnIndex(COL_LOCATION))
+                registration.signaturePoints = result.getString(result.getColumnIndex(
+                    COL_SIGNATUREPOINTS))
+                registration.datum = result.getString(result.getColumnIndex(COL_DATUM)).toString()
+                registration.studentennummer = result.getString(result.getColumnIndex(
+                    COL_STUDENTENNUMMER)).toInt();
+
+                list.add(registration)
+            }
+            while (result.moveToNext())
+        }
+        return list
+    }
+
+    fun readDataRegistrationByStudentNumber(studentennummer : String): MutableList<Registration>{
+        val list: MutableList<Registration> = ArrayList()
+        val db = this.readableDatabase
+        val query = "Select * from $TABLENAMEREGISTRATION WHERE $COL_STUDENTENNUMMER = $studentennummer"
         val result = db.rawQuery(query, null)
         if (result.moveToFirst()) {
             do {
