@@ -47,8 +47,6 @@ class DatabaseActivity : AppCompatActivity() {
         ButtonAddCSV.setOnClickListener {
             if(editTextCSV.text.toString().isNotBlank()){
                 var csvtxt = editTextCSV.text.toString()
-                var delimiter1 = ","
-                var delimiter2 = ";"
 
                 val result = csvtxt
 
