@@ -5,7 +5,13 @@ android:layout_height="fill_parent"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 android:orientation="vertical">
 
-<TextView
+    <EditText
+        android:id="@+id/searchStudent2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search by name" />
+
+    <TextView
     android:id="@+id/text_view_id"
     android:layout_width="300dp"
     android:layout_height="wrap_content"

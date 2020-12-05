@@ -1,5 +1,6 @@
 package com.example.integratedproject
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -16,7 +17,6 @@ class DatabaseActivity : AppCompatActivity() {
         val context = this
         val db = DataBaseHandler(context)
         AddStudentButton.setOnClickListener {
-
                 if(editTextUserName.text.toString().isNotEmpty() &&
                     editTextTextStudentenNummer.text.toString().isNotEmpty()){
                     val name = editTextUserName.text.toString()
@@ -27,18 +27,21 @@ class DatabaseActivity : AppCompatActivity() {
                 else {
                     Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_SHORT).show()
                 }
-
         }
 
+
+
         ButtonViewData.setOnClickListener {
-            val data = db.readData()
+            /*val data = db.readData()
             textViewResult.text = ""
             
             for(i in 0 until data.size){
                 textViewResult.append(
                     data[i].studentennummer.toString() + " " + data[i].name + "\n"
                 )
-            }
+            }*/
+            setResult(Activity.RESULT_OK)
+            finish()
         }
 
         ButtonAddCSV.setOnClickListener {
