@@ -47,9 +47,28 @@ class DatabaseActivity : AppCompatActivity() {
                 var delimiter1 = ","
                 var delimiter2 = ";"
 
-                val result = csvtxt.split(delimiter1, delimiter2)
+                val result = csvtxt
 
-                Log.d("csv", result.toString())
+                val studentNames =  mutableListOf<String>()
+                val studentNumbers = mutableListOf<String>()
+
+
+                val lstValues: List<String> = result.split(";").map { it -> it.trim() }
+
+                for (i in lstValues.indices) {
+                    if(i % 2 == 0){
+                        studentNumbers.add(lstValues[i])
+                    }else{
+                        studentNames.add(lstValues[i])
+                    }
+                }
+
+                for (i in studentNumbers.indices) {
+                    db.insertData(studentNames[i], studentNumbers[i])
+                }
+
+
+
             }
 
         }
