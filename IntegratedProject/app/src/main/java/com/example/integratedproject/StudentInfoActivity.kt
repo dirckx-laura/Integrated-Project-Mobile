@@ -32,6 +32,9 @@ class StudentInfoActivity : AppCompatActivity() {
     private fun loadRegistrations():ArrayList<Registration>{
         db = DataBaseHandler(this)
 
+        val test = db.readDataRegistrationByStudentNumber("1000")
+        Log.d("readdata", test.toString());
+
         val data = db.readDataRegistration()
         if(data.size != 0){
             for(item in data){
