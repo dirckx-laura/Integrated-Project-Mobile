@@ -1,5 +1,6 @@
 # Integrated-Project-Mobile
-Subject Web Frameworks during my academic career at Artesis Plantin Hogeschool. Degree programme: Mobile Development.
+Subject Integrated Project Mobile during my academic career at Artesis Plantin Hogeschool.<br/>
+Degree programme: Mobile Development.
 
 **Opdracht**
 
