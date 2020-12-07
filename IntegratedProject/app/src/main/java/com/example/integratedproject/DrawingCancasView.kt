@@ -81,7 +81,7 @@ class MyCanvasView(context: Context, attrs: AttributeSet) : View(context, attrs)
             MotionEvent.ACTION_MOVE -> touchMove()
             MotionEvent.ACTION_UP -> touchUp()
         }
-        Log.d("test","x:${currentX}, y:${currentY}")
+      // Log.d("test","x:${currentX}, y:${currentY}")
         coordlist.add(currentX)
         coordlist.add(currentY)
         return true
