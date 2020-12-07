@@ -30,6 +30,7 @@ import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.android.gms.location.*
 
 
@@ -64,6 +65,8 @@ class DrawingCanavas : AppCompatActivity() {
              signaturePad.Redraw(signaturePad.getDrawing())
          }*/
 
+
+
         saveButton.setOnClickListener {
             signaturePad.saveCoords()
             val coordinaten =  signaturePad.getCoords()
@@ -77,16 +80,7 @@ class DrawingCanavas : AppCompatActivity() {
         }
     }
     fun getLastLocation() {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            requestPermission()
-            Log.d("selfper: " , ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION).toString())
-            Log.d("Packetmanager : " , PackageManager.PERMISSION_GRANTED.toString())
-
-        } else {
+        if (hasPermissions()) {
             fusedLocationProviderClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
                     mLocation = location
@@ -95,6 +89,10 @@ class DrawingCanavas : AppCompatActivity() {
                         Log.d("Test1: " , location.longitude.toString())
                     }
                 }
+
+        } else {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION), 1)
         }
     }
      private fun requestPermission() {
@@ -113,6 +111,12 @@ class DrawingCanavas : AppCompatActivity() {
         adress = Adress.get(0).getAddressLine(0)
         Log.d("Debug:","Adress" + adress)
         return adress
+    }
+
+    private fun hasPermissions(): Boolean {
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+
     }
 
 }
