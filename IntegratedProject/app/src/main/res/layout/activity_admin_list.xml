@@ -29,10 +29,15 @@
     </ListView>
 
     <Button
-        android:id="@+id/addStudentButton"
+    android:id="@+id/addStudentButton"
+    android:layout_width="146dp"
+    android:layout_height="wrap_content"
+    android:text="Add student" />
+    <Button
+        android:id="@+id/fbButton"
         android:layout_width="146dp"
         android:layout_height="wrap_content"
-        android:text="Add student" />
+        android:text="Sync with Firebase" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

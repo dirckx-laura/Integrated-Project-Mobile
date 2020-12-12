@@ -2,7 +2,6 @@ package com.example.integratedproject
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,7 +10,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_admin_list.*
+
 
 class AdminList : AppCompatActivity() {
     data class Student(val name: String, val studentNr:String)
@@ -86,6 +89,10 @@ class AdminList : AppCompatActivity() {
         addStudentButton.setOnClickListener {
             val intent= Intent(this,DatabaseActivity::class.java)
             startActivityForResult(intent,REQUEST_CODE)
+        }
+        fbButton.setOnClickListener {
+            val firebaseHelper=FirebaseHelper()
+            firebaseHelper.syncDatabase(this)
         }
 
     }
