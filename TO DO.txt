@@ -1,0 +1,23 @@
+STUDENT DB:
+
+StudentNumber (PK)
+Name: String
+
+REGISTRATION DB:
+
+id (PK)
+Location: String
+SignaturePoints: String
+
+
+CREATE DATABASES  + Folder 'databaseFiles'
+
+https://github.com/gcacace/android-signaturepad -> Bekijken
+
+
+
+
+TO DO:
+
+INTRO BI - Wat gaan we tonen?
+MOBILE - Handtekeningen vergelijken proberen
