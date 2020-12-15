@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
-import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 
 private const val STROKE_WIDTH = 12f
@@ -17,6 +16,7 @@ class MyCanvasView(context: Context, attrs: AttributeSet) : View(context, attrs)
     private val drawColor = ResourcesCompat.getColor(resources, R.color.colorPaint, null)
     private val backgroundColor = ResourcesCompat.getColor(resources, R.color.colorBackground, null)
     private var coordlist = ArrayList<Float>()
+    private var derivativelist=ArrayList<Float>()
     private var coordstring: String = "";
 
     private lateinit var extraCanvas: Canvas
@@ -60,8 +60,42 @@ class MyCanvasView(context: Context, attrs: AttributeSet) : View(context, attrs)
         extraBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         extraCanvas = Canvas(extraBitmap)
         var floatArrayy = coordlist.toFloatArray()
-        extraCanvas.drawLines(floatArrayy, paint)
+        //extraCanvas.drawLines(floatArrayy, paint)
         Log.d("test","Redrawing...")
+
+        val path = Path()
+/*        if(floatArrayy.size>3){
+            for(i in 0 until floatArrayy.size step 2){
+                if (i === 0) {
+                    derivativelist.add((floatArrayy[i+2] - floatArrayy[i]) / 3)
+                    derivativelist.add((floatArrayy[i+3]- floatArrayy[i+1]) / 3)
+                } else if (i === floatArrayy.size - 2) {
+
+                    derivativelist.add((floatArrayy[i] - floatArrayy[i-2]) / 3)
+                    derivativelist.add((floatArrayy[i+1] - floatArrayy[i-1]) / 3)
+                } else {
+
+                    derivativelist.add((floatArrayy[i+2] - floatArrayy[i-2]) / 3)
+                    derivativelist.add((floatArrayy[i+3] - floatArrayy[i-1]) / 3)
+                }
+            }
+        }*/
+        var derivativeArray=derivativelist.toFloatArray()
+        var first = true
+        for(i in 0 until floatArrayy.size step 4){
+            if(first){
+                first=false
+                path.moveTo(floatArrayy[i],floatArrayy[i+1])
+            }
+            else if(i<floatArrayy.size-3){
+                path.quadTo(floatArrayy[i],floatArrayy[i+1],floatArrayy[i+2],floatArrayy[i+3])
+            }
+            else{
+                //path.cubicTo(floatArrayy[i-2]+derivativeArray[i-2],floatArrayy[i-1]+derivativeArray[i-1],floatArrayy[i]-derivativeArray[i],floatArrayy[i+1]-derivativeArray[i+1],floatArrayy[i],floatArrayy[i+1])
+                path.lineTo(floatArrayy[i], floatArrayy[i+1]);
+            }
+        }
+        extraCanvas.drawPath(path, paint)
         //invalidate()
     }
 
