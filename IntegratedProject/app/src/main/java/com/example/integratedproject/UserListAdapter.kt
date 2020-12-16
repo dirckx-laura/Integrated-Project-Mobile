@@ -19,7 +19,7 @@ class UserListAdapter (private val context: Context,
 
         val student=getItem(position) as UserList.Student
         nameTextView.text=student.name
-        sNumberTextView.text=student.studentNr
+        sNumberTextView.text="s"+student.studentNr
 
 
         return  rowView

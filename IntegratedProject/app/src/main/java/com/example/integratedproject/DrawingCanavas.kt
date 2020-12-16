@@ -4,7 +4,6 @@ package com.example.integratedproject
 
 
 import android.Manifest
-import android.R.attr.country
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
