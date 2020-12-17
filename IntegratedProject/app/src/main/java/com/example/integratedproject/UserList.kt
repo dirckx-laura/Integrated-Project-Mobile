@@ -26,7 +26,7 @@ class UserList : AppCompatActivity() {
         var studentList=ArrayList<Student>()
         adminDbHelper= AdminDBHelper(this)
         bottomNavView=findViewById(R.id.bottom_navigation)
-        bottomNavView.selectedItemId=R.id.admin
+        bottomNavView.selectedItemId=R.id.students
         val context = this
         val db = DataBaseHandler(context)
 
@@ -70,11 +70,13 @@ class UserList : AppCompatActivity() {
 
         bottomNavView=findViewById(R.id.bottom_navigation)
         bottomNavView.selectedItemId = R.id.students;
+
+    }
         bottomNavView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.students ->{
-                   /* val intent = Intent(this, UserList::class.java)
-                    startActivity(intent)*/
+                    /* val intent = Intent(this, UserList::class.java)
+                     startActivity(intent)*/
                     true
                 }
                 else -> {
@@ -84,6 +86,6 @@ class UserList : AppCompatActivity() {
                     false
                 }
             }
-        }
-    }}
+        }}
+
 }
