@@ -76,9 +76,9 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
     fun insertDataRegistration(location: String, signaturePoints: String, studentennummer: String, datum: String) {
         val database = this.writableDatabase
         val contentValues = ContentValues()
-        //val resizedSignature=resizeSignature(signaturePoints,studentennummer)
+        val resizedSignature=resizeSignature(signaturePoints,studentennummer)
         contentValues.put(COL_LOCATION, location)
-        contentValues.put(COL_SIGNATUREPOINTS, signaturePoints)
+        contentValues.put(COL_SIGNATUREPOINTS, resizedSignature)
         contentValues.put(COL_STUDENTENNUMMER, studentennummer)
         contentValues.put(COL_DATUM, datum);
 
@@ -139,7 +139,7 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
     }
     fun doesMasterSignatureExist(studentennummer: String):Boolean{
         val db = this.readableDatabase
-        val query = "Select * TABLE$TABLEMASTERSIGNATURE WHERE $COL_STUDENTENNUMMER = $studentennummer"
+        val query = "Select * FROM $TABLEMASTERSIGNATURE WHERE $COL_STUDENTENNUMMER = $studentennummer"
         val result=db.rawQuery(query,null)
         return result.count>=1
     }
