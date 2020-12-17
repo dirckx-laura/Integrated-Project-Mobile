@@ -5,24 +5,23 @@
     <LinearLayout
         android:id="@+id/relativeLayout1"
         android:layout_height="fill_parent"
-        android:layout_width="fill_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        android:layout_width="fill_parent">
 
         <TextView
             android:id="@+id/FirstText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="First"
-            android:layout_weight="1">
-        </TextView>
+            android:textSize="25sp"></TextView>
 
         <TextView
             android:id="@+id/SecondText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Second"
-            android:layout_weight="1">
-        </TextView>
+            android:textSize="25sp"></TextView>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

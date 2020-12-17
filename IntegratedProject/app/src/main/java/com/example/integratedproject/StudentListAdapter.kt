@@ -21,7 +21,7 @@ class StudentListAdapter (private val context: Context,
 
         val student=getItem(position) as AdminList.Student
         nameTextView.text=student.name
-        sNumberTextView.text="s"+student.studentNr
+        sNumberTextView.text="S"+student.studentNr
 
         return  rowView
     }

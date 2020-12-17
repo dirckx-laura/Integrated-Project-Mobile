@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_drawing_canavas.*
 import kotlinx.android.synthetic.main.registration_list.*
 import java.io.IOException
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -56,7 +57,9 @@ class DrawingCanavas : AppCompatActivity() {
         saveButton.setOnClickListener {
             signaturePad.saveCoords()
             val coordinaten =  signaturePad.getCoords()
-            val datum = LocalDateTime.now().toString()
+            val datumNow = LocalDateTime.now()
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+            val datum = datumNow.format(formatter).toString()
             val sNr=intent.getStringExtra("sNr")
 
             getLastLocation();
