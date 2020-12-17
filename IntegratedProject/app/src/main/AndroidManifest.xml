@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".LoadActivity"></activity>
-        <activity android:name=".SignedSignature" />
+        <activity android:name=".SignedSignature" android:screenOrientation="landscape" />
         <activity
             android:name=".DrawingCanavas"
             android:screenOrientation="landscape" />
