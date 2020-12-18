@@ -29,6 +29,8 @@ class SignedSignature : AppCompatActivity() {
         }
         val height = this.resources.displayMetrics.heightPixels
         val width = this.resources.displayMetrics.widthPixels
+        Log.d("coords", height.toString())
+        Log.d("coords", width.toString())
         signaturePadAdmin.Redraw(coordsListFloat,width,height)
     }
 }
