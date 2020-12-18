@@ -9,14 +9,15 @@
 
     <ListView
         android:id="@+id/registrationListView"
-        android:layout_width="1289dp"
-        android:layout_height="900dp"
+        android:layout_width="1271dp"
+        android:layout_height="739dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginBottom="16dp"
         android:layout_weight="2"
         android:drawSelectorOnTop="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
 
     </ListView>
