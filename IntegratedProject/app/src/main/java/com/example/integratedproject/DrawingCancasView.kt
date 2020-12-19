@@ -118,6 +118,8 @@ class MyCanvasView(context: Context, attrs: AttributeSet) : View(context, attrs)
       // Log.d("test","x:${currentX}, y:${currentY}")
         coordlist.add(currentX)
         coordlist.add(currentY)
+        Log.d("x:",currentX.toString())
+        Log.d("y",currentY.toString())
         return true
     }
 

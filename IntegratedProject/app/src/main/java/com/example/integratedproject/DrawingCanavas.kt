@@ -62,6 +62,9 @@ class DrawingCanavas : AppCompatActivity() {
             val datum = datumNow.format(formatter).toString()
             val sNr=intent.getStringExtra("sNr")
 
+            if(!db.doesMasterSignatureExist(sNr.toString())){
+                db.insertMasterSignature(coordinaten,sNr.toString())
+            }
             getLastLocation();
             db.insertDataRegistration(locatie, coordinaten, sNr.toString(), datum)
             signaturePad.clearCanavas()

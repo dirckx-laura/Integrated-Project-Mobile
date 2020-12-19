@@ -7,5 +7,6 @@ class Registration {
     var location: String = ""
     var signaturePoints: String = ""
     var datum: String = ""
+    var percentage: Int=0
 
 }

@@ -1,6 +1,7 @@
 package com.example.integratedproject
 
 import android.content.Intent
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +11,7 @@ import androidx.core.view.children
 import kotlinx.android.synthetic.main.activity_student_info.*
 
 class StudentInfoActivity : AppCompatActivity() {
-    data class Registration(val location:String, val signature: String,val date:String)
+    //data class Registration(val location:String, val signature: String,val date:String)
     private lateinit var textView:TextView
     private var registrationList=ArrayList<Registration>()
     private lateinit var db:DataBaseHandler
@@ -19,12 +20,11 @@ class StudentInfoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_student_info)
         db= DataBaseHandler(this)
         registrationList=loadRegistrations()
-        registrationList.forEach{it->
-            Log.d("test",it.date)
-        }
+        val adapter=RegistrationAdapter(this,registrationList)
+        registrationListView.adapter=adapter
         registrationListView.setOnItemClickListener{_, _, position, _->
             val studentSignatureIntent= Intent(this,SignedSignature::class.java)
-            studentSignatureIntent.putExtra("coords",registrationList[position].signature)
+            studentSignatureIntent.putExtra("coords",registrationList[position].signaturePoints)
             Log.d("test","Student clicked")
             startActivity(studentSignatureIntent)
         }
@@ -35,7 +35,7 @@ class StudentInfoActivity : AppCompatActivity() {
         val data = db.readDataRegistrationByStudentNumber(sNr!!)
         if(data.size != 0){
             for(item in data){
-                registrationList.add(Registration(item.location,item.signaturePoints,item.datum));
+                registrationList.add(item);
             }
         }else{
             Toast.makeText(this, "NO DATA!", Toast.LENGTH_SHORT).show()
