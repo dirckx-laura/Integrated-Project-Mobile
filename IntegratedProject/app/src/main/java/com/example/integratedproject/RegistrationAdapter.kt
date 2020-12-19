@@ -15,7 +15,7 @@ import android.widget.Filterable
 import android.widget.TextView
 
 class RegistrationAdapter (private val context: Context,
-                           private val dataSource: ArrayList<StudentInfoActivity.Registration>) : BaseAdapter()
+                           private val dataSource: ArrayList<Registration>) : BaseAdapter()
     /*Filterable*/ {
     private val inflater: LayoutInflater
             = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -28,7 +28,8 @@ class RegistrationAdapter (private val context: Context,
 /*
         val signaturePadView=rowView.findViewById(R.id.signaturePad) as MyCanvasView
 */
-        val percentage=(1..100).random()
+        val registration=getItem(position) as Registration
+        val percentage=registration.percentage
         var percentageStr=SpannableString(percentage.toString()+"%")
         if(percentage<=33){
             percentageStr.setSpan(ForegroundColorSpan(Color.RED),0,percentageStr.length-1,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -39,8 +40,7 @@ class RegistrationAdapter (private val context: Context,
         else if(percentage in 66..100){
             percentageStr.setSpan(ForegroundColorSpan(Color.GREEN),0,percentageStr.length-1,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
-        val registration=getItem(position) as StudentInfoActivity.Registration
-        dateTextView.text=registration.date
+        dateTextView.text=registration.datum
         locationTextView.text=registration.location
         signaturePercentage.text=percentageStr
        /* var coordList=ArrayList<Float>()

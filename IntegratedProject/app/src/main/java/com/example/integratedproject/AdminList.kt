@@ -61,7 +61,7 @@ class AdminList : AppCompatActivity() {
         listView.setOnItemClickListener { _, _, position, _ ->
             val studentInfoIntent= Intent(this,StudentInfoActivity::class.java)
             studentInfoIntent.putExtra("sNr",studentList[position].studentNr)
-            Log.d("test","Student clicked")
+            Log.d("test","Student clicked"+studentList[position].studentNr)
             startActivity(studentInfoIntent)
         }
         bottomNavView.setOnNavigationItemSelectedListener {
