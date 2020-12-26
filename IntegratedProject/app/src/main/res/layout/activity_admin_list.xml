@@ -55,17 +55,14 @@
 
         <ListView
             android:id="@+id/student_list"
-            android:layout_width="1329dp"
-            android:layout_height="492dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="143dp"
-            android:layout_marginBottom="128dp"
+            android:layout_width="1280dp"
+            android:layout_height="491dp"
+            android:layout_marginTop="66dp"
             android:layout_weight="2"
             android:divider="@android:color/darker_gray"
             android:dividerHeight="4sp"
             android:drawSelectorOnTop="false"
-            app:layout_constraintBottom_toTopOf="@+id/fbButton"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_view_id">
 
