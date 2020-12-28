@@ -94,6 +94,10 @@ class AdminList : AppCompatActivity() {
             val firebaseHelper=FirebaseHelper()
             firebaseHelper.syncDatabase(this)
         }
+        dropDatabase.setOnClickListener {
+            db.dropDatabase()
+            loadStudents()
+        }
 
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -331,4 +331,10 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
         db.delete(TABLEMASTERSIGNATURE,COL_STUDENTENNUMMER+"="+studentennummer,null)
         db.delete(TABLENAMEREGISTRATION,COL_STUDENTENNUMMER+"="+studentennummer,null)
     }
+    fun dropDatabase(){
+        val db=this.writableDatabase
+        db.delete(TABLENAMESTUDENTS,"",null)
+        db.delete(TABLEMASTERSIGNATURE,"",null)
+        db.delete(TABLENAMEREGISTRATION,"",null)
+    }
 }
