@@ -40,7 +40,7 @@ class AdminList : AppCompatActivity() {
         studentList=loadStudents()
 
         if(studentList.size !=0){
-        val adapter=StudentListAdapter(this,studentList)
+        val adapter=AdminStudentListAdapter(this,studentList)
         listView.adapter=adapter
         searchStudent.addTextChangedListener(object :TextWatcher{
             override fun afterTextChanged(s: Editable?) {
@@ -94,6 +94,10 @@ class AdminList : AppCompatActivity() {
             val firebaseHelper=FirebaseHelper()
             firebaseHelper.syncDatabase(this)
         }
+        dropDatabase.setOnClickListener {
+            db.dropDatabase()
+            loadStudents()
+        }
 
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -118,10 +122,10 @@ class AdminList : AppCompatActivity() {
         }
 
         if(studentList.size !=0){
-            val adapter=StudentListAdapter(this,studentList)
+            val adapter=AdminStudentListAdapter(this,studentList)
             listView.adapter=adapter
         }
-        val adapter=StudentListAdapter(this,studentList)
+        val adapter=AdminStudentListAdapter(this,studentList)
         listView.adapter=adapter
         return studentList
     }

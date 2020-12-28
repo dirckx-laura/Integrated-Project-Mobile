@@ -325,4 +325,16 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
             Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
         }
     }
+    fun deleteStudent(studentennummer: String){
+        val db=this.writableDatabase
+        db.delete(TABLENAMESTUDENTS,COL_STUDENTENNUMMER+"="+studentennummer,null)
+        db.delete(TABLEMASTERSIGNATURE,COL_STUDENTENNUMMER+"="+studentennummer,null)
+        db.delete(TABLENAMEREGISTRATION,COL_STUDENTENNUMMER+"="+studentennummer,null)
+    }
+    fun dropDatabase(){
+        val db=this.writableDatabase
+        db.delete(TABLENAMESTUDENTS,"",null)
+        db.delete(TABLEMASTERSIGNATURE,"",null)
+        db.delete(TABLENAMEREGISTRATION,"",null)
+    }
 }

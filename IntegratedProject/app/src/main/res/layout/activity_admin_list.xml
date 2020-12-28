@@ -21,51 +21,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/menu_navigation" />
+            app:menu="@menu/menu_navigation" >
 
-        <Button
-            android:id="@+id/fbButton"
-            android:layout_width="146dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="108dp"
-            android:layout_marginLeft="108dp"
-            android:layout_marginBottom="75dp"
-            android:background="#97000C"
-            android:drawableLeft="@android:drawable/ic_popup_sync"
-            android:drawableTint="#ffffff"
-            android:text="Syncroniseren met Firebase"
-            android:textColor="#ffffff"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/addStudentButton"
-            android:layout_width="148dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="130dp"
-            android:layout_marginRight="130dp"
-            android:layout_marginBottom="75dp"
-            android:background="#97000C"
-            android:drawableLeft="@android:drawable/ic_menu_add"
-            android:drawableTint="#ffffff"
-            android:text="Student toevoegen"
-            android:textColor="#ffffff"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-            app:layout_constraintEnd_toEndOf="parent" />
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
         <ListView
             android:id="@+id/student_list"
-            android:layout_width="1329dp"
-            android:layout_height="492dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="143dp"
-            android:layout_marginBottom="128dp"
+            android:layout_width="1272dp"
+            android:layout_height="431dp"
+            android:layout_marginTop="66dp"
             android:layout_weight="2"
             android:divider="@android:color/darker_gray"
             android:dividerHeight="4sp"
             android:drawSelectorOnTop="false"
-            app:layout_constraintBottom_toTopOf="@+id/fbButton"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_view_id">
 
@@ -95,6 +64,49 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchStudent" />
+
+        <Button
+            android:id="@+id/addStudentButton"
+            android:layout_width="148dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="302dp"
+            android:layout_marginLeft="302dp"
+            android:background="#97000C"
+            android:drawableLeft="@android:drawable/ic_menu_add"
+            android:drawableTint="#ffffff"
+            android:text="Student toevoegen"
+            android:textColor="#ffffff"
+            app:layout_constraintStart_toEndOf="@+id/dropDatabase"
+            app:layout_constraintTop_toBottomOf="@+id/student_list" />
+
+        <Button
+            android:id="@+id/dropDatabase"
+            android:layout_width="148dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="580dp"
+            android:layout_marginRight="580dp"
+            android:background="#97000C"
+            android:drawableLeft="@android:drawable/ic_menu_add"
+            android:drawableTint="#ffffff"
+            android:text="Drop database"
+            android:textColor="#ffffff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/student_list" />
+
+        <Button
+            android:id="@+id/fbButton"
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-1dp"
+            android:layout_marginEnd="204dp"
+            android:layout_marginRight="204dp"
+            android:background="#97000C"
+            android:drawableLeft="@android:drawable/ic_popup_sync"
+            android:drawableTint="#ffffff"
+            android:text="Syncroniseren met Firebase"
+            android:textColor="#ffffff"
+            app:layout_constraintEnd_toStartOf="@+id/dropDatabase"
+            app:layout_constraintTop_toBottomOf="@+id/student_list" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
