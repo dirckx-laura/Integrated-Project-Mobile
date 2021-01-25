@@ -64,6 +64,9 @@ class AdminList : AppCompatActivity() {
             Log.d("test","Student clicked"+studentList[position].studentNr)
             startActivity(studentInfoIntent)
         }
+        }else{
+            Toast.makeText(context, "NO DATA!", Toast.LENGTH_SHORT).show()
+        }
         bottomNavView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.admin ->{
@@ -82,10 +85,6 @@ class AdminList : AppCompatActivity() {
                 }
             }
         }
-        }else{
-            Toast.makeText(context, "NO DATA!", Toast.LENGTH_SHORT).show()
-        }
-
         addStudentButton.setOnClickListener {
             val intent= Intent(this,DatabaseActivity::class.java)
             startActivityForResult(intent,REQUEST_CODE)

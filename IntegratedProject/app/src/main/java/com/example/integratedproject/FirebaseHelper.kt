@@ -25,6 +25,7 @@ class FirebaseHelper {
         var counter=0
         registrations.forEach { it->
             database.getReference("Registrations").child(counter.toString()).setValue(it)
+            counter++
         }
     }
     fun syncDatabase(context: Context){
